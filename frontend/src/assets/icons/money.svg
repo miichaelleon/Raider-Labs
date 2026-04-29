@@ -1,0 +1,17 @@
+<svg width="160" height="160" viewBox="0 0 160 160" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Money illustration</title>
+<desc>A flat illustration of a dollar bill</desc>
+<rect x="10" y="45" width="140" height="90" rx="8" fill="#4a9e6b"/>
+<rect x="20" y="57" width="120" height="66" rx="4" fill="#3d8a5c"/>
+<rect x="20" y="57" width="120" height="8" fill="#56b47a"/>
+<rect x="20" y="115" width="120" height="8" fill="#56b47a"/>
+<circle cx="80" cy="90" r="22" fill="#56b47a"/>
+<circle cx="80" cy="90" r="16" fill="#4a9e6b"/>
+<rect x="76" y="76" width="8" height="28" rx="2" fill="#c8e6c9"/>
+<rect x="72" y="80" width="16" height="5" rx="2" fill="#c8e6c9"/>
+<rect x="72" y="92" width="16" height="5" rx="2" fill="#c8e6c9"/>
+<rect x="24" y="72" width="18" height="9" rx="3" fill="#56b47a"/>
+<rect x="118" y="72" width="18" height="9" rx="3" fill="#56b47a"/>
+<rect x="24" y="99" width="18" height="9" rx="3" fill="#56b47a"/>
+<rect x="118" y="99" width="18" height="9" rx="3" fill="#56b47a"/>
+</svg>

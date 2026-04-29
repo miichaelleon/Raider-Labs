@@ -1,0 +1,131 @@
+.dashboard-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.dashboard-header {
+  margin-bottom: 0;
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.3rem;
+}
+
+.dashboard-sub {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* ── Zone section ── */
+.zone-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-bottom: 2px solid #F2F2F2;
+  padding-bottom: 36px;
+}
+
+.zone-section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+
+.zone-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.1rem;
+}
+
+.zone-section-subtitle {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* ── Tiles ── */
+.zone-section-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.task-tile {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 160px;
+  height: 160px;
+  min-height: 120px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.task-tile:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.tile-id {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #cc0000;
+}
+
+.tile-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #111;
+  line-height: 1.4;
+}
+
+.tile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 160px;
+}
+
+.task-tile {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  cursor: pointer;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 6px 0px #d0d0d0;
+}
+
+
+.tile-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #111;
+  line-height: 1.4;
+  text-align: center;
+  width: 160px;
+}
+
+.tile-icon {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+}

@@ -1,0 +1,139 @@
+.hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Intro text ── */
+.hero-intro {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  max-width: 700px;
+}
+
+.hero-headline {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.hero-subtext {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ── Lesson preview box ── */
+.hero-lesson-box {
+  background: #f0f0f0;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  margin: 2rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lesson-bar {
+  height: 16px;
+  background: #d5d5d5;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.lesson-bar.short {
+  width: 55%;
+}
+
+/* ── Why section ── */
+.hero-why {
+  width: 100%;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.why-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 3rem;
+}
+
+.why-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.why-card {
+  flex: 1;
+  min-width: 220px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.why-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.why-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.why-card-desc {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.topics-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.topics-zone-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #cc0000;
+}
+
+.topics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.topic-item {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.topics-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0.5rem 0;
+}

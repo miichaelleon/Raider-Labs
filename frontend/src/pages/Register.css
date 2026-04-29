@@ -1,0 +1,132 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.register-card {
+  background: #fff;
+  padding: 3rem 4rem;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.register-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.register-sub {
+  font-size: 0.95rem;
+  color: #777;
+  margin-top: -0.5rem;
+}
+
+.register-error {
+  color: #cc0000;
+  font-size: 0.9rem;
+  background: #fff5f5;
+  border: 1px solid #ffcccc;
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+
+.register-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.register-row .register-field {
+  flex: 1;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.register-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.register-field input,
+.register-field select {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-field input:focus,
+.register-field select:focus {
+  border-color: #cc0000;
+}
+
+.register-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.register-btn:hover {
+  background: #aa0000;
+}
+
+.register-login {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.register-login span {
+  color: #cc0000;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.register-login span:hover {
+  text-decoration: underline;
+}
+
+.register-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.register-row .register-field {
+  flex: 1;
+}

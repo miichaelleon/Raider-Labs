@@ -1,0 +1,19 @@
+<svg width="160" height="160" viewBox="0 0 160 160" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Wallet illustration</title>
+<desc>A flat illustration of a wallet</desc>
+
+<rect x="20" y="45" width="120" height="85" rx="10" fill="#5b8dd9"/>
+<rect x="20" y="45" width="120" height="18" rx="10" fill="#4a7bc8"/>
+<rect x="20" y="55" width="120" height="8" fill="#4a7bc8"/>
+
+<rect x="85" y="75" width="55" height="35" rx="8" fill="#3a6ab8"/>
+<circle cx="112" cy="92" r="10" fill="#6aa0e8"/>
+<circle cx="112" cy="92" r="6" fill="#4a7bc8"/>
+
+<rect x="30" y="70" width="45" height="6" rx="3" fill="#7aaae8"/>
+<rect x="30" y="82" width="35" height="6" rx="3" fill="#7aaae8"/>
+<rect x="30" y="94" width="40" height="6" rx="3" fill="#7aaae8"/>
+
+<rect x="25" y="38" width="30" height="14" rx="4" fill="#4a7bc8"/>
+<rect x="25" y="38" width="30" height="7" rx="4" fill="#5b8dd9"/>
+</svg>

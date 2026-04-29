@@ -1,0 +1,150 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 2rem;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.navbar-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.navbar-name {
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── User dropdown ── */
+.navbar-user {
+  position: relative;
+}
+
+.navbar-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.navbar-user-btn:hover {
+  background: #f5f5f5;
+}
+
+.navbar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #cc0000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.navbar-fullname {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.navbar-arrow {
+  font-size: 0.8rem;
+  color: #666;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+.navbar-arrow.open {
+  transform: rotate(180deg);
+}
+
+.navbar-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  min-width: 160px;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.navbar-dropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #111;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-dropdown button:hover {
+  background: #f5f5f5;
+}
+
+.navbar-dropdown button.logout {
+  color: #cc0000;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* ── Auth buttons ── */
+.btn-login {
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.btn-login:hover {
+  background: #f5f5f5;
+}
+
+.btn-signup {
+  background: #cc0000;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.btn-signup:hover {
+  background: #aa0000;
+}

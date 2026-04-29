@@ -1,0 +1,86 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.login-card {
+  background: #fff;
+  padding: 3rem 4rem;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.login-sub {
+  font-size: 0.95rem;
+  color: #777;
+  margin-top: -0.5rem;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.login-field input {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+}
+
+.login-field input:focus {
+  border-color: #cc0000;
+}
+
+.login-btn {
+  background: #c93134;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.login-btn:hover {
+  background: #aa0000;
+}
+
+.login-register {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.login-register span {
+  color: #c93134;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.login-register span:hover {
+  text-decoration: underline;
+}
