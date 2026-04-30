@@ -47,6 +47,10 @@ export default function Register() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') handleSubmit();
+  };
+
   return (
     <div className="register-page">
       <div className="register-card">
@@ -63,6 +67,7 @@ export default function Register() {
               name="first_name"
               value={form.first_name}
               onChange={handleChange}
+              onKeyDown={handleKeyDown}
               placeholder="First name"
             />
           </div>
@@ -73,6 +78,7 @@ export default function Register() {
               name="last_name"
               value={form.last_name}
               onChange={handleChange}
+              onKeyDown={handleKeyDown}
               placeholder="Last name"
             />
           </div>
@@ -85,6 +91,7 @@ export default function Register() {
             name="email"
             value={form.email}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             placeholder="email@example.com"
           />
         </div>
@@ -96,6 +103,7 @@ export default function Register() {
             name="password"
             value={form.password}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             placeholder="Enter a password"
           />
         </div>
@@ -107,6 +115,7 @@ export default function Register() {
             name="confirmPassword"
             value={form.confirmPassword}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
             placeholder="Confirm your password"
           />
         </div>

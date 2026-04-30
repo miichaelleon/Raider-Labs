@@ -1,3 +1,5 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import tutorIcon from '../assets/icons/claude.png';
 import learnIcon from '../assets/icons/bulb.png';
 import moneyIcon from '../assets/icons/money.png';
@@ -25,6 +27,13 @@ const features = [
 ];
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  const handleGetStarted = () => {
+    navigate(token ? '/dashboard' : '/login');
+  };
+
   return (
     <section className="hero">
 
@@ -36,6 +45,9 @@ export default function Hero() {
           A personalized learning platform built for Texas Tech students,
           designed to make financial concepts clear, approachable, and practical.
         </p>
+        <button className="hero-get-started" onClick={handleGetStarted}>
+          {token ? 'Go to Dashboard →' : 'Get Started →'}
+        </button>
       </div>
 
       <div className="hero-lesson-box">
@@ -69,7 +81,7 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
+      
     </section>
   );
 }

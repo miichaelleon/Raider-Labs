@@ -24,6 +24,30 @@
   font-size: 1.1rem;
   color: #555;
   line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.hero-get-started {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 14px 32px;
+  background: #cc0000;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.hero-get-started:hover {
+  background: #991b1b;
+  transform: translateY(-2px);
+}
+
+.hero-get-started:active {
+  transform: scale(0.98);
 }
 
 /* ── Lesson preview box ── */
@@ -136,4 +160,26 @@
   height: 1px;
   background: #e0e0e0;
   margin: 0.5rem 0;
+}
+/* ── Credit line ── */
+.hero-credit {
+  padding: 2rem 2rem 3rem;
+  text-align: center;
+}
+
+.hero-credit-text {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.hero-credit-link {
+  color: #cc0000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hero-credit-link:hover {
+  color: #991b1b;
 }
