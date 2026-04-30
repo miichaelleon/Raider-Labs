@@ -1,0 +1,121 @@
+.reg-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.reg-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.reg-header p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.reg-info {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reg-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.reg-info-row strong { color: #111; }
+.reg-info-row strong.positive { color: #4a9e6b; }
+.reg-info-row strong.negative { color: #cc0000; }
+
+.reg-guess {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reg-guess label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.reg-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reg-input-wrap span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #888;
+}
+
+.reg-input-wrap input {
+  width: 140px;
+  padding: 10px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-family: inherit;
+  outline: none;
+  text-align: center;
+}
+
+.reg-input-wrap input:focus { border-color: #cc0000; }
+
+.reg-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.reg-btn:hover { background: #aa0000; }
+.reg-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.reg-feedback { display: flex; flex-direction: column; gap: 12px; }
+.reg-feedback .correct { color: #4a9e6b; font-weight: 600; }
+.reg-feedback .incorrect { color: #e53e3e; font-weight: 600; }
+
+.reg-progress {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+}
+
+.reg-complete {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.reg-complete h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.reg-complete p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}

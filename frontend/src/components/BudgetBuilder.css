@@ -1,0 +1,119 @@
+.budget-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.budget-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.budget-header p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.budget-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+.budget-section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.budget-input {
+  padding: 8px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+}
+
+.budget-input.large {
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 140px;
+}
+
+.budget-input:focus { border-color: #cc0000; }
+
+.budget-bill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.budget-bill-name {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.budget-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.budget-dollar {
+  font-size: 0.95rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.budget-input-wrap .budget-input {
+  width: 100px;
+  text-align: right;
+}
+
+.budget-summary {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.budget-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #555;
+  padding: 4px 0;
+}
+
+.budget-summary-row .positive { color: #cc0000; font-weight: 600; }
+.budget-summary-row .negative { color: #888; }
+
+.budget-summary-row.total {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 10px;
+  margin-top: 4px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.budget-summary-row.good span { color: #4a9e6b; }
+.budget-summary-row.bad span { color: #e53e3e; }

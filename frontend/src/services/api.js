@@ -1,4 +1,4 @@
-const BASE_URL = "https://raider-finance.onrender.com";
+const BASE_URL = "http://localhost:8000";
 
 export async function loginUser(email, password) {
   const response = await fetch(`${BASE_URL}/login`, {

@@ -1,0 +1,25 @@
+<svg viewBox="0 0 600 250" width="100%" xmlns="http://www.w3.org/2000/svg" style="font-family: system-ui, sans-serif;">
+<text x="300" y="32" text-anchor="middle" fill="#111" font-size="18" font-weight="700">Pay Needs First</text>
+
+<polygon points="300,60 200,200 400,200" fill="#fff" stroke="#cc0000" stroke-width="2"/>
+
+<polygon points="300,60 268,105 332,105" fill="#fff5f5"/>
+<text x="300" y="92" text-anchor="middle" fill="#cc0000" font-size="11" font-weight="700">CRITICAL</text>
+<text x="300" y="104" text-anchor="middle" fill="#666" font-size="9">Rent, food</text>
+
+<polygon points="268,105 233,155 367,155 332,105" fill="#fdf6f6"/>
+<text x="300" y="135" text-anchor="middle" fill="#cc0000" font-size="11" font-weight="700">IMPORTANT</text>
+<text x="300" y="148" text-anchor="middle" fill="#666" font-size="9">Utilities, transport</text>
+
+<polygon points="233,155 200,200 400,200 367,155" fill="#fff" stroke="#cc0000" stroke-width="0.5"/>
+<text x="300" y="180" text-anchor="middle" fill="#888" font-size="11" font-weight="700">WANTS</text>
+<text x="300" y="194" text-anchor="middle" fill="#888" font-size="9">Fun, extras</text>
+
+<text x="100" y="100" fill="#666" font-size="11" font-weight="600">Pay first ↑</text>
+<text x="100" y="115" fill="#888" font-size="10">Most urgent</text>
+
+<text x="500" y="195" text-anchor="end" fill="#666" font-size="11" font-weight="600">Pay last ↓</text>
+<text x="500" y="210" text-anchor="end" fill="#888" font-size="10">Only if money is left</text>
+
+<text x="300" y="232" text-anchor="middle" fill="#666" font-size="12" font-style="italic">When money is limited, needs always come before wants.</text>
+</svg>

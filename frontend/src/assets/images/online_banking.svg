@@ -1,0 +1,45 @@
+<svg viewBox="0 0 600 280" width="100%" xmlns="http://www.w3.org/2000/svg" style="font-family: system-ui, sans-serif;">
+<text x="300" y="32" text-anchor="middle" fill="#111" font-size="18" font-weight="700">Online Banking on Your Phone</text>
+
+<rect x="220" y="55" width="160" height="220" rx="20" fill="#1a2a3a"/>
+<rect x="230" y="70" width="140" height="195" rx="6" fill="#fff"/>
+
+<rect x="230" y="70" width="140" height="40" rx="6" fill="#cc0000"/>
+<text x="300" y="90" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">YOUR BANK</text>
+<text x="300" y="103" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8">Account Summary</text>
+
+<rect x="240" y="120" width="120" height="60" rx="6" fill="#fff5f5" stroke="#cc0000" stroke-width="1"/>
+<text x="300" y="138" text-anchor="middle" fill="#cc0000" font-size="9" font-weight="700">CHECKING</text>
+<text x="300" y="160" text-anchor="middle" fill="#111" font-size="22" font-weight="700">$1,250</text>
+<text x="300" y="174" text-anchor="middle" fill="#666" font-size="9">Available balance</text>
+
+<rect x="240" y="190" width="120" height="50" rx="6" fill="#f0f6fc" stroke="#5b8dd9" stroke-width="1"/>
+<text x="300" y="208" text-anchor="middle" fill="#5b8dd9" font-size="9" font-weight="700">SAVINGS</text>
+<text x="300" y="228" text-anchor="middle" fill="#111" font-size="16" font-weight="700">$500</text>
+
+<circle cx="300" cy="260" r="4" fill="#1a2a3a"/>
+
+<g transform="translate(60 100)">
+<text x="0" y="0" fill="#cc0000" font-size="13" font-weight="700">1.</text>
+<text x="20" y="0" fill="#111" font-size="13" font-weight="600">Log in</text>
+<text x="20" y="18" fill="#666" font-size="11">Open the bank app</text>
+</g>
+
+<g transform="translate(60 145)">
+<text x="0" y="0" fill="#cc0000" font-size="13" font-weight="700">2.</text>
+<text x="20" y="0" fill="#111" font-size="13" font-weight="600">Find Account</text>
+<text x="20" y="18" fill="#666" font-size="11">Account Summary</text>
+</g>
+
+<g transform="translate(60 190)">
+<text x="0" y="0" fill="#cc0000" font-size="13" font-weight="700">3.</text>
+<text x="20" y="0" fill="#111" font-size="13" font-weight="600">Check balance</text>
+<text x="20" y="18" fill="#666" font-size="11">Available balance</text>
+</g>
+
+<g transform="translate(420 130)">
+<text x="0" y="0" fill="#4a9e6b" font-size="13" font-weight="700">Tip:</text>
+<text x="0" y="20" fill="#111" font-size="11" font-weight="500">Always check before</text>
+<text x="0" y="35" fill="#111" font-size="11" font-weight="500">making a purchase!</text>
+</g>
+</svg>

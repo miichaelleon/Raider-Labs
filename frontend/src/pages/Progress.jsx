@@ -55,13 +55,13 @@ export default function Progress() {
     load();
   }, [token]);
 
-  const progressMap = progress.reduce((acc, p) => {
+  const progressMap = (Array.isArray(progress) ? progress : []).reduce((acc, p) => {
     acc[p.lesson_id] = p;
     return acc;
   }, {});
 
   const totalLessons = zones.reduce((sum, z) => sum + z.modules.length, 0);
-  const completedLessons = progress.filter(p => p.completed).length;
+  const completedLessons = (Array.isArray(progress) ? progress : []).filter(p => p.completed).length;
   const percent = Math.round((completedLessons / totalLessons) * 100);
 
   return (

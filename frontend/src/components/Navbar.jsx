@@ -27,7 +27,7 @@ export default function Navbar({ isLoggedIn }) {
 
   return (
     <nav className="navbar">
-      <div className="navbar-left" onClick={() => navigate('/')}>
+      <div className="navbar-left" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/')}>
         <img src={logo} alt="Raider Labs" className="navbar-logo" />
         <span className="navbar-name">Raider Labs</span>
       </div>
