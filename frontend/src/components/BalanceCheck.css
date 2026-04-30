@@ -1,0 +1,111 @@
+.bc-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.bc-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.bc-header p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.bc-scenario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.bc-card {
+  background: #fff;
+  border: 2px solid #5b8dd9;
+  border-radius: 10px;
+  padding: 1.25rem;
+  flex: 1;
+  text-align: center;
+  max-width: 200px;
+}
+
+.bc-card-label {
+  font-size: 0.75rem;
+  color: #5b8dd9;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.bc-card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.bc-card-value.cost { color: #cc0000; }
+.bc-card:nth-child(3) { border-color: #cc0000; }
+.bc-card:nth-child(3) .bc-card-label { color: #cc0000; }
+
+.bc-vs {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #888;
+}
+
+.bc-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bc-btn {
+  padding: 12px 16px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.bc-btn:hover { border-color: #cc0000; }
+
+.bc-btn.selected {
+  border-color: #cc0000;
+  background: #fff5f5;
+}
+
+.bc-btn.yes { color: #4a9e6b; }
+.bc-btn.no { color: #e53e3e; }
+
+.bc-submit {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.bc-submit:hover { background: #aa0000; }
+.bc-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+.bc-feedback { display: flex; flex-direction: column; gap: 12px; }
+.bc-feedback .correct { color: #4a9e6b; font-weight: 600; }
+.bc-feedback .incorrect { color: #e53e3e; font-weight: 600; }

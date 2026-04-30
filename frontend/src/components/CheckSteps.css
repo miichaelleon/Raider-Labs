@@ -1,0 +1,90 @@
+.cs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.cs-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.cs-header p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.cs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  cursor: grab;
+  user-select: none;
+}
+
+.cs-step:hover {
+  border-color: #cc0000;
+}
+
+.cs-step:active { cursor: grabbing; }
+
+.cs-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #cc0000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.cs-emoji { font-size: 1.3rem; }
+
+.cs-label { flex: 1; font-size: 0.95rem; color: #333; }
+
+.cs-grip { color: #ccc; font-size: 1.2rem; }
+
+.cs-actions { display: flex; gap: 8px; }
+
+.cs-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cs-btn:hover { background: #aa0000; }
+
+.cs-btn.secondary {
+  background: #fff;
+  color: #cc0000;
+  border: 1.5px solid #cc0000;
+}
+
+.cs-btn.secondary:hover { background: #fff5f5; }
+
+.cs-feedback {
+  font-size: 0.95rem;
+  font-weight: 600;
+}

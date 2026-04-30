@@ -1,0 +1,108 @@
+.taxcalc-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.taxcalc-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.taxcalc-header p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.taxcalc-scenario {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.taxcalc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.taxcalc-row strong {
+  color: #111;
+  font-size: 1.1rem;
+}
+
+.taxcalc-row.guess {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 14px;
+}
+
+.taxcalc-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.taxcalc-dollar {
+  font-size: 1rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.taxcalc-input-wrap input {
+  width: 100px;
+  padding: 8px 12px;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+  text-align: center;
+}
+
+.taxcalc-input-wrap input:focus { border-color: #cc0000; }
+
+.taxcalc-btn {
+  background: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.taxcalc-btn:hover { background: #aa0000; }
+.taxcalc-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+.taxcalc-feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.taxcalc-feedback .correct {
+  color: #4a9e6b;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.taxcalc-feedback .incorrect {
+  color: #e53e3e;
+  font-weight: 600;
+  font-size: 1rem;
+}

@@ -1,11 +1,8 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 from database import progress_collection
 from auth import decode_access_token
 from pydantic import BaseModel
 from datetime import datetime
-from bson import ObjectId
-from fastapi import Header
-from typing import Optional
 
 router = APIRouter()
 
@@ -22,11 +19,9 @@ def get_user_id(authorization: str) -> str:
     return payload.get("sub")
 
 @router.post("/progress")
-async def save_progress(
-    data: ProgressUpdate,
-    authorization: str = Header(...)
-):
+async def save_progress(data: ProgressUpdate, authorization: str = Header(...)):
     user_id = get_user_id(authorization)
+    passed = data.score >= 4
 
     existing = await progress_collection.find_one({
         "user_id": user_id,
@@ -38,7 +33,7 @@ async def save_progress(
             {"user_id": user_id, "lesson_id": data.lesson_id},
             {"$set": {
                 "score": data.score,
-                "completed": data.completed,
+                "completed": passed,
                 "completed_at": datetime.utcnow()
             }, "$inc": {"attempts": 1}}
         )
@@ -47,17 +42,16 @@ async def save_progress(
             "user_id": user_id,
             "lesson_id": data.lesson_id,
             "score": data.score,
-            "completed": data.completed,
+            "completed": passed,
             "attempts": 1,
             "completed_at": datetime.utcnow()
         })
 
-    return {"message": "Progress saved"}
+    return {"message": "Progress saved", "passed": passed}
 
 @router.get("/progress")
 async def get_progress(authorization: str = Header(...)):
     user_id = get_user_id(authorization)
-
     cursor = progress_collection.find({"user_id": user_id})
     results = []
     async for doc in cursor:
@@ -68,5 +62,4 @@ async def get_progress(authorization: str = Header(...)):
             "attempts": doc["attempts"],
             "completed_at": str(doc.get("completed_at", ""))
         })
-
     return results
