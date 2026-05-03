@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import userImage from '../assets/images/redraider.png';
 import backdrop from '../assets/images/backdrop.jpg';
+import engLogo from '../assets/images/eng-logo.png';
+import eduLogo from '../assets/images/edu-logo.png';
 import Navbar from '../components/Navbar';
 import { useAuth } from '../context/AuthContext';
 import './AboutUs.css';
@@ -24,7 +26,7 @@ const teamMembers = [
     image: userImage,
     github: 'https://github.com/AJPerez24',
     description:
-      'Add a personal biography, accomplishments, interests, and technical background here.',
+      'I am a Computer Science student at the TTU Whitacre College of Engineering with a minors in Mathematics and Business. My general skills fall under front-end development, data analytics, and machine learning with robotics and AI systems. Proficient in JavaScript, CSS, C, Python, and SQL',
   },
   {
     name: 'Gerardo Jimenez',
@@ -203,6 +205,18 @@ export default function AboutUs() {
           </div>
         </div>
       )}
+
+            <footer className="about-footer">
+        <div className="about-footer-logos">
+          <a href="https://www.depts.ttu.edu/education/" target="_blank" rel="noreferrer">
+            <img src={eduLogo} alt="College of Education" className="about-footer-logo" />
+          </a>
+          <a href="https://www.depts.ttu.edu/coe/" target="_blank" rel="noreferrer">
+            <img src={engLogo} alt="College of Engineering" className="about-footer-logo" />
+          </a>
+        </div>
+      </footer>
+
     </div>
   );
 }

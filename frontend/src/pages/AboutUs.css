@@ -372,3 +372,35 @@
     font-size: 1.6rem;
   }
 }
+
+/* ─────────────────────────────────────────
+   ABOUT PAGE FOOTER (logos only)
+───────────────────────────────────────── */
+.about-footer {
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: center;
+  background: #f5f5f5;
+}
+ 
+.about-footer-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+ 
+.about-footer-logo {
+  height: 120px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+ 
+.about-footer-logo:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
