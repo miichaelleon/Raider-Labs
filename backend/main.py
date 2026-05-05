@@ -5,6 +5,7 @@ from routes.users import router as users_router
 from routes.progress import router as progress_router
 from routes.ai import router as ai_router
 from routes.admin import router as admin_router
+from routes.lessons import router as lessons_router
 
 load_dotenv()
 
@@ -22,3 +23,4 @@ app.include_router(users_router)
 app.include_router(progress_router)
 app.include_router(ai_router)
 app.include_router(admin_router)
+app.include_router(lessons_router)

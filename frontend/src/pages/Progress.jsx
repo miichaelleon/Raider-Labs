@@ -1,51 +1,43 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { getProgress } from '../services/api';
+import { getProgress, getLessons } from '../services/api';
 import Navbar from '../components/Navbar';
 import './Progress.css';
 
-const zones = [
-  {
-    id: 'basics',
-    label: 'Basics',
-    subtitle: 'Foundation',
-    modules: [
-      { id: '0.1', title: 'Money' },
-      { id: '0.2', title: 'Income' },
-      { id: '0.3', title: 'Taxes' },
-    ],
-  },
-  {
-    id: 'thinking',
-    label: 'Zone A',
-    subtitle: 'Strategic Planning — Thinking',
-    modules: [
-      { id: '1.1', title: 'Needs vs. Wants' },
-      { id: '1.2', title: 'The 4 Step Budgeting Routine' },
-      { id: '1.3', title: 'Recording Transactions in a Register' },
-    ],
-  },
-  {
-    id: 'doing',
-    label: 'Zone B',
-    subtitle: 'Tactical Execution — Doing',
-    modules: [
-      { id: '2.1', title: 'Endorsing & Depositing Checks' },
-      { id: '2.2', title: 'Managing Online Banking & Balances' },
-    ],
-  },
-];
-
 export default function Progress() {
+  // Ignore ERROR here. Code is just finnicky
   const { token, user } = useAuth();
-  const [progress, setProgress] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const [progress,  setProgress]  = useState([]);
+  const [zones,     setZones]     = useState([]);
+  const [loading,   setLoading]   = useState(true);
 
   useEffect(() => {
+    if (!token) return;
     async function load() {
       try {
-        const data = await getProgress(token);
-        setProgress(data || []);
+        const [progressData, lessonsData] = await Promise.all([
+          getProgress(token),
+          getLessons(token),
+        ]);
+
+        setProgress(Array.isArray(progressData) ? progressData : []);
+
+        // Build zone map from dynamic lesson list
+        const zoneMap = new Map();
+        for (const lesson of lessonsData) {
+          const zoneId = lesson.zone?.id ?? 'uncategorised';
+          if (!zoneMap.has(zoneId)) {
+            zoneMap.set(zoneId, {
+              id:       zoneId,
+              label:    lesson.zone?.label    ?? 'Other',
+              subtitle: lesson.zone?.subtitle ?? '',
+              modules:  [],
+            });
+          }
+          zoneMap.get(zoneId).modules.push({ id: lesson.id, title: lesson.title });
+        }
+        setZones(Array.from(zoneMap.values()));
       } catch (err) {
         console.error(err);
       } finally {
@@ -55,14 +47,14 @@ export default function Progress() {
     load();
   }, [token]);
 
-  const progressMap = (Array.isArray(progress) ? progress : []).reduce((acc, p) => {
+  const progressMap = progress.reduce((acc, p) => {
     acc[p.lesson_id] = p;
     return acc;
   }, {});
 
-  const totalLessons = zones.reduce((sum, z) => sum + z.modules.length, 0);
-  const completedLessons = (Array.isArray(progress) ? progress : []).filter(p => p.completed).length;
-  const percent = Math.round((completedLessons / totalLessons) * 100);
+  const totalLessons     = zones.reduce((sum, z) => sum + z.modules.length, 0);
+  const completedLessons = progress.filter(p => p.completed).length;
+  const percent          = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
 
   return (
     <>
@@ -91,7 +83,7 @@ export default function Progress() {
               </div>
               <div className="progress-modules">
                 {zone.modules.map(mod => {
-                  const p = progressMap[mod.id];
+                  const p    = progressMap[mod.id];
                   const done = p?.completed;
                   return (
                     <div key={mod.id} className={`progress-module ${done ? 'done' : ''}`}>

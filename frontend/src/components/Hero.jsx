@@ -1,6 +1,9 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import tutorIcon from '../assets/icons/claude.png';
 import learnIcon from '../assets/icons/bulb.png';
 import moneyIcon from '../assets/icons/money.png';
+import autismIcon from '../assets/icons/autism.png';
 import './Hero.css';
 
 const features = [
@@ -8,7 +11,7 @@ const features = [
     icon: learnIcon,
     title: 'Personalized learning',
     description:
-      'Students work at their own pace, building financial skills step by step with guided lessons.',
+      'Students with ASD work at their own pace, building financial skills step by step with guided lessons.',
   },
   {
     icon: moneyIcon,
@@ -22,9 +25,22 @@ const features = [
     description:
       'An intelligent tutor guides students through concepts without just giving away the answer.',
   },
+  {
+    icon: autismIcon,
+    title: 'Autism Friendly',
+    description:
+      'All lessons and interactions are designed to help students with ASD succeed.',
+  },
 ];
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  const handleGetStarted = () => {
+    navigate(token ? '/dashboard' : '/login');
+  };
+
   return (
     <section className="hero">
 
@@ -33,9 +49,12 @@ export default function Hero() {
           Raider Finance helps you understand financial literacy
         </h1>
         <p className="hero-subtext">
-          A personalized learning platform built for Texas Tech students,
+          A personalized learning platform built for student with Autism Spectrum Disorder,
           designed to make financial concepts clear, approachable, and practical.
         </p>
+        <button className="hero-get-started" onClick={handleGetStarted}>
+          {token ? 'Go to Dashboard →' : 'Get Started →'}
+        </button>
       </div>
 
       <div className="hero-lesson-box">
@@ -69,7 +88,7 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
+      
     </section>
   );
 }
