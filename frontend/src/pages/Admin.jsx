@@ -360,6 +360,11 @@ export default function Admin() {
   async function handleUpload(e) {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (!file.name.toLowerCase().endsWith('.json')) {
+      setUploadStatus({ type: 'error', message: 'Only .json files are accepted' });
+      e.target.value = '';
+      return;
+    }
     setUploading(true);
     setUploadStatus(null);
     try {
@@ -412,7 +417,7 @@ export default function Admin() {
               {uploading ? 'Uploading…' : '+ Upload JSON'}
               <input
                 type="file"
-                accept=".json"
+                accept=".json,application/json,text/plain"
                 onChange={handleUpload}
                 disabled={uploading}
                 style={{ display: 'none' }}

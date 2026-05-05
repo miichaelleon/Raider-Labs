@@ -131,7 +131,7 @@ async def upload_lesson(
     if payload.get("role") != "admin":
         raise HTTPException(status_code=403, detail="Admin access required")
 
-    if not file.filename.endswith(".json"):
+    if not file.filename.lower().endswith(".json"):
         raise HTTPException(status_code=400, detail="Only .json files are accepted")
 
     try:
