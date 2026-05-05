@@ -18,7 +18,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## TEAM NOTES
 
-A few things regarding how to run this software locally, you will need API access to Anthropic's Claude Sonnet 4.6, access to our secret encryption key, and access to our database. For safety and security we will not share those with anyone else other than Dr. Inan. Because of this, our program may not run locally off of your PC. 
+A few things regarding how to run this software locally, you will need API access to Anthropic's Claude Sonnet 4.6, access to our secret encryption key, and access to our database. For safety and security we will not share those with anyone else other than Dr. Inan. Because of this, our program may not run locally off of your PC. If you have the API key, the Secret key, and the Database URL, your going to create your own .env file with the key linked to the variables. MONGO_URL, SECRET_KEY, and ANTHROPIC_API_KEY. Once the .env file is set you can run the next part.
 Running steps.
 If you are running on windows just run 
 1. pip install -r requirements.txt 
