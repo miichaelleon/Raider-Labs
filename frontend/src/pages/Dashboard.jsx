@@ -5,15 +5,17 @@ import { useLessons } from '../hooks/useLessons';
 import Navbar from '../components/Navbar';
 import './Dashboard.css';
 
-import moneyIcon     from '../assets/icons/money.svg';
-import walletIcon    from '../assets/icons/wallet.svg';
+import moneyIcon from '../assets/icons/money.svg';
+import walletIcon from '../assets/icons/wallet.svg';
 import calculatorIcon from '../assets/icons/calculator.svg';
-import checklistIcon from '../assets/icons/checklist.svg';
-import budgetIcon    from '../assets/icons/budget.svg';
-import ledgerIcon    from '../assets/icons/ledger.svg';
-import checkIcon     from '../assets/icons/check.svg';
-import bankingIcon   from '../assets/icons/banking.svg';
+import checklistIcon  from '../assets/icons/checklist.svg';
+import budgetIcon from '../assets/icons/budget.svg';
+import ledgerIcon from '../assets/icons/ledger.svg';
+import checkIcon from '../assets/icons/check.svg';
+import bankingIcon from '../assets/icons/banking.svg';
 import stocksIcon from '../assets/icons/stocks.svg';
+import assetsIcon from '../assets/icons/assets.png';
+
 
 const ICON_MAP = {
   money: moneyIcon,
@@ -25,6 +27,7 @@ const ICON_MAP = {
   check: checkIcon,
   banking: bankingIcon,
   stock: stocksIcon,
+  assets: assetsIcon,
 };
 
 function getStage(progressEntry) {

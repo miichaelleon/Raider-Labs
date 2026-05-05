@@ -124,3 +124,17 @@ export async function getLesson(token, lessonId) {
   if (!response.ok) throw new Error(`Lesson '${lessonId}' not found`);
   return response.json();
 }
+export async function uploadLesson(token, file) {
+  const formData = new FormData();
+  formData.append("file", file);
+  const response = await fetch(`${BASE_URL}/admin/lessons`, {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${token}` },
+    body: formData,
+  });
+  const text = await response.text();
+  let data = {};
+  try { data = text ? JSON.parse(text) : {}; } catch { data = {}; }
+  if (!response.ok) throw new Error(data.detail || `Upload failed (${response.status})`);
+  return data;
+}

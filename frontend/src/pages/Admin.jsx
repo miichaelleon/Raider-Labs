@@ -1,20 +1,18 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { getAllUsers, getUserProgress, deleteUser, getLessons } from '../services/api';
+import { getAllUsers, getUserProgress, deleteUser, getLessons, uploadLesson } from '../services/api';
 import Navbar from '../components/Navbar';
 import './Admin.css';
 
-// ── Stage derivation ───────────────────────────────────────────────────
 function getStage(entry) {
-  if (!entry)                    return 'not-started';
-  if (entry.completed)           return 'completed';
-  if (entry.attempts >= 2)       return 'assess';
-  if (entry.attempts >= 1)       return 'practice';
+  if (!entry)              return 'not-started';
+  if (entry.completed)     return 'completed';
+  if (entry.attempts >= 2) return 'assess';
+  if (entry.attempts >= 1) return 'practice';
   return 'show';
 }
 
-// ── Stage colors & labels ──────────────────────────────────────────────
 const STAGE_META = {
   'not-started': { label: 'Not Started', color: '#e5e7eb', text: '#6b7280' },
   'show':        { label: 'Show Me',     color: '#fca5a5', text: '#991b1b' },
@@ -22,38 +20,30 @@ const STAGE_META = {
   'assess':      { label: 'Assess',      color: '#fcd34d', text: '#92400e' },
   'completed':   { label: 'Completed',   color: '#cc0000', text: '#ffffff' },
 };
+
 const STAGE_ORDER = ['not-started', 'show', 'practice', 'assess', 'completed'];
 
-// ── Small bar chart component ──────────────────────────────────────────
 function ProgressBar({ value, max, color }) {
   const pct = max > 0 ? (value / max) * 100 : 0;
   return (
     <div className="chart-bar-track">
-      <div
-        className="chart-bar-fill"
-        style={{ width: `${pct}%`, background: color }}
-      />
+      <div className="chart-bar-fill" style={{ width: `${pct}%`, background: color }} />
     </div>
   );
 }
 
-// ── Analytics module ───────────────────────────────────────────────────
 function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLessons }) {
   const totalLessons = allLessons.length;
 
   const chartData = useMemo(() => {
     return allLessons.map(lesson => {
       const stageCounts = { 'not-started': 0, show: 0, practice: 0, assess: 0, completed: 0 };
-
       const targets = focusUser ? [focusUser] : users.filter(u => u.role === 'student');
-
       targets.forEach(u => {
         const userProgress = allProgress[u.id] || [];
         const entry = userProgress.find(p => p.lesson_id === lesson.id);
-        const stage = getStage(entry);
-        stageCounts[stage]++;
+        stageCounts[getStage(entry)]++;
       });
-
       return { ...lesson, stageCounts, total: targets.length };
     });
   }, [users, allProgress, focusUser, allLessons]);
@@ -61,17 +51,14 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLe
   const summaryStats = useMemo(() => {
     const targets = focusUser ? [focusUser] : users.filter(u => u.role === 'student');
     if (targets.length === 0) return { completionRate: 0, avgLessons: 0, fullyComplete: 0 };
-
     let totalCompleted = 0;
     let fullyComplete  = 0;
-
     targets.forEach(u => {
       const userProgress = allProgress[u.id] || [];
       const completedCount = userProgress.filter(p => p.completed).length;
       totalCompleted += completedCount;
       if (completedCount === totalLessons) fullyComplete++;
     });
-
     return {
       completionRate: Math.round((totalCompleted / (targets.length * totalLessons)) * 100),
       avgLessons:     (totalCompleted / targets.length).toFixed(1),
@@ -79,9 +66,7 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLe
     };
   }, [users, allProgress, focusUser, allLessons]);
 
-  const maxStudents = focusUser
-    ? 1
-    : users.filter(u => u.role === 'student').length;
+  const maxStudents = focusUser ? 1 : users.filter(u => u.role === 'student').length;
 
   if (loadingProgress) {
     return (
@@ -93,8 +78,6 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLe
 
   return (
     <div className="analytics-module">
-
-      {/* ── Header ── */}
       <div className="analytics-header">
         <div>
           <h2 className="analytics-title">
@@ -108,19 +91,22 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLe
               : 'Showing stage distribution across all students per lesson.'}
           </p>
         </div>
-
-        {/* ── Legend ── */}
         <div className="analytics-legend">
           {STAGE_ORDER.map(s => (
             <div key={s} className="legend-item">
-              <span className="legend-dot" style={{ background: STAGE_META[s].color, border: s === 'not-started' ? '1px solid #d1d5db' : 'none' }} />
+              <span
+                className="legend-dot"
+                style={{
+                  background: STAGE_META[s].color,
+                  border: s === 'not-started' ? '1px solid #d1d5db' : 'none',
+                }}
+              />
               <span className="legend-label">{STAGE_META[s].label}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ── Summary stat cards ── */}
       <div className="analytics-stats">
         <div className="analytics-stat-card">
           <span className="analytics-stat-value">{summaryStats.completionRate}%</span>
@@ -144,38 +130,30 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLe
         </div>
       </div>
 
-      {/* ── Per-lesson chart ── */}
       <div className="analytics-chart">
         {chartData.map(lesson => (
           <div key={lesson.id} className="chart-row">
-
-            {/* Lesson label */}
             <div className="chart-row-label">
               <span className="chart-zone-badge">{lesson.zone?.label ?? lesson.zone}</span>
               <span className="chart-lesson-name">{lesson.title}</span>
             </div>
-
-            {/* Stacked bars per stage */}
             <div className="chart-bars">
               {STAGE_ORDER.map(stage => {
                 const count = lesson.stageCounts[stage];
                 if (count === 0) return null;
                 return (
                   <div key={stage} className="chart-bar-group">
-                    <ProgressBar
-                      value={count}
-                      max={maxStudents}
-                      color={STAGE_META[stage].color}
-                    />
-                    <span className="chart-bar-count" style={{ color: STAGE_META[stage].text === '#ffffff' ? '#cc0000' : STAGE_META[stage].text }}>
+                    <ProgressBar value={count} max={maxStudents} color={STAGE_META[stage].color} />
+                    <span
+                      className="chart-bar-count"
+                      style={{ color: STAGE_META[stage].text === '#ffffff' ? '#cc0000' : STAGE_META[stage].text }}
+                    >
                       {count} {STAGE_META[stage].label}
                     </span>
                   </div>
                 );
               })}
             </div>
-
-            {/* Completion pill */}
             <div className="chart-row-completion">
               <span className="chart-completion-pct">
                 {maxStudents > 0
@@ -184,21 +162,18 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLe
               </span>
               <span className="chart-completion-label">done</span>
             </div>
-
           </div>
         ))}
       </div>
-
     </div>
   );
 }
 
-// ── Delete Confirmation Modal ──────────────────────────────────────────
 function DeleteModal({ target, onClose, onConfirmed }) {
-  const [step, setStep]           = useState(1); // 1 = warning, 2 = password, 3 = deleting
+  const [step,          setStep]          = useState(1);
   const [adminPassword, setAdminPassword] = useState('');
-  const [error, setError]         = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [error,         setError]         = useState('');
+  const [showPassword,  setShowPassword]  = useState(false);
 
   function handleClose() {
     setStep(1);
@@ -208,10 +183,7 @@ function DeleteModal({ target, onClose, onConfirmed }) {
   }
 
   async function handleDelete() {
-    if (!adminPassword.trim()) {
-      setError('Please enter your admin password.');
-      return;
-    }
+    if (!adminPassword.trim()) { setError('Please enter your admin password.'); return; }
     setStep(3);
     setError('');
     try {
@@ -229,7 +201,6 @@ function DeleteModal({ target, onClose, onConfirmed }) {
     <div className="delete-modal-overlay" onClick={handleClose}>
       <div className="delete-modal" onClick={e => e.stopPropagation()}>
 
-        {/* ── Step 1: Warning ── */}
         {step === 1 && (
           <>
             <div className="delete-modal-icon">⚠️</div>
@@ -249,9 +220,7 @@ function DeleteModal({ target, onClose, onConfirmed }) {
               <p>This data <strong>cannot be recovered</strong> after deletion.</p>
             </div>
             <div className="delete-modal-actions">
-              <button className="delete-modal-cancel" onClick={handleClose}>
-                Cancel
-              </button>
+              <button className="delete-modal-cancel" onClick={handleClose}>Cancel</button>
               <button className="delete-modal-next" onClick={() => setStep(2)}>
                 I Understand, Continue →
               </button>
@@ -259,7 +228,6 @@ function DeleteModal({ target, onClose, onConfirmed }) {
           </>
         )}
 
-        {/* ── Step 2: Password ── */}
         {step === 2 && (
           <>
             <div className="delete-modal-icon">🔐</div>
@@ -291,17 +259,12 @@ function DeleteModal({ target, onClose, onConfirmed }) {
               {error && <p className="delete-error">{error}</p>}
             </div>
             <div className="delete-modal-actions">
-              <button className="delete-modal-cancel" onClick={() => setStep(1)}>
-                ← Back
-              </button>
-              <button className="delete-modal-confirm" onClick={handleDelete}>
-                Delete Account
-              </button>
+              <button className="delete-modal-cancel" onClick={() => setStep(1)}>← Back</button>
+              <button className="delete-modal-confirm" onClick={handleDelete}>Delete Account</button>
             </div>
           </>
         )}
 
-        {/* ── Step 3: Deleting ── */}
         {step === 3 && (
           <>
             <div className="delete-modal-icon deleting-spinner">⏳</div>
@@ -317,7 +280,6 @@ function DeleteModal({ target, onClose, onConfirmed }) {
   );
 }
 
-// ── Main Admin Component ───────────────────────────────────────────────
 export default function Admin() {
   const { user, token } = useAuth();
   const navigate = useNavigate();
@@ -329,8 +291,9 @@ export default function Admin() {
   const [loadingProgress, setLoadingProgress] = useState(true);
   const [search,          setSearch]          = useState('');
   const [deleteTarget,    setDeleteTarget]    = useState(null);
+  const [uploadStatus,    setUploadStatus]    = useState(null);
+  const [uploading,       setUploading]       = useState(false);
 
-  // ── Load all users and lessons in parallel ──
   useEffect(() => {
     if (user?.role !== 'admin') { navigate('/dashboard'); return; }
     async function load() {
@@ -352,7 +315,6 @@ export default function Admin() {
     load();
   }, [token, user, navigate]);
 
-  // ── Load progress for all students once users are loaded ──
   useEffect(() => {
     if (users.length === 0) return;
     async function loadAllProgress() {
@@ -386,7 +348,6 @@ export default function Admin() {
 
   async function handleDeleteConfirmed(adminPassword) {
     await deleteUser(token, deleteTarget.id, adminPassword);
-    // Remove from local state so table updates immediately
     setUsers(prev => prev.filter(u => u.id !== deleteTarget.id));
     setAllProgress(prev => {
       const next = { ...prev };
@@ -396,18 +357,34 @@ export default function Admin() {
     setDeleteTarget(null);
   }
 
+  async function handleUpload(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setUploadStatus(null);
+    try {
+      const result = await uploadLesson(token, file);
+      setUploadStatus({ type: 'success', message: result.message });
+      const lessonData = await getLessons(token);
+      setAllLessons(Array.isArray(lessonData) ? lessonData : []);
+    } catch (err) {
+      setUploadStatus({ type: 'error', message: err.message });
+    } finally {
+      setUploading(false);
+      e.target.value = '';
+    }
+  }
+
   return (
     <>
       <Navbar isLoggedIn={true} />
       <div className="admin-page">
 
-        {/* ── Page header ── */}
         <div className="admin-header">
           <h1 className="admin-title">Admin Dashboard</h1>
           <p className="admin-sub">Manage users and view progress.</p>
         </div>
 
-        {/* ── Total user stats ── */}
         <div className="admin-stats">
           <div className="admin-stat">
             <span className="admin-stat-value">{users.length}</span>
@@ -423,7 +400,32 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* ── Analytics module ── */}
+        <div className="lesson-upload-panel">
+          <div className="lesson-upload-header">
+            <div>
+              <h2 className="lesson-upload-title">Upload Lesson</h2>
+              <p className="lesson-upload-sub">
+                Upload a JSON file to add or update a lesson in the database.
+              </p>
+            </div>
+            <label className={`lesson-upload-btn ${uploading ? 'uploading' : ''}`}>
+              {uploading ? 'Uploading…' : '+ Upload JSON'}
+              <input
+                type="file"
+                accept=".json"
+                onChange={handleUpload}
+                disabled={uploading}
+                style={{ display: 'none' }}
+              />
+            </label>
+          </div>
+          {uploadStatus && (
+            <div className={`lesson-upload-status ${uploadStatus.type}`}>
+              {uploadStatus.type === 'success' ? '✅' : '❌'} {uploadStatus.message}
+            </div>
+          )}
+        </div>
+
         {!loading && (
           <AnalyticsModule
             users={users}
@@ -434,7 +436,6 @@ export default function Admin() {
           />
         )}
 
-        {/* ── Search bar ── */}
         <input
           type="text"
           placeholder="Search by name or email..."
@@ -443,7 +444,6 @@ export default function Admin() {
           className="admin-search"
         />
 
-        {/* ── Users table ── */}
         {loading ? (
           <p className="admin-loading">Loading users...</p>
         ) : (
