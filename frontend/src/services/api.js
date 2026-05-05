@@ -108,3 +108,19 @@ export async function deleteUser(token, userId, adminPassword) {
 
   return data;
 }
+
+export async function getLessons(token) {
+  const response = await fetch(`${BASE_URL}/lessons`, {
+    headers: { "Authorization": `Bearer ${token}` }
+  });
+  if (!response.ok) throw new Error("Failed to fetch lessons");
+  return response.json();
+}
+
+export async function getLesson(token, lessonId) {
+  const response = await fetch(`${BASE_URL}/lessons/${lessonId}`, {
+    headers: { "Authorization": `Bearer ${token}` }
+  });
+  if (!response.ok) throw new Error(`Lesson '${lessonId}' not found`);
+  return response.json();
+}

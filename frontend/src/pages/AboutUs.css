@@ -1,6 +1,3 @@
-/* ─────────────────────────────────────────
-   PAGE SHELL
-───────────────────────────────────────── */
 .about-page {
   min-height: 100vh;
   background: #f9f9f9;
@@ -8,9 +5,6 @@
   color: #111827;
 }
 
-/* ─────────────────────────────────────────
-   BACKDROP HERO
-───────────────────────────────────────── */
 .about-backdrop {
   width: 100%;
   min-height: 420px;
@@ -59,9 +53,6 @@
   margin-bottom: 20px;
 }
 
-/* ─────────────────────────────────────────
-   MAIN CONTAINER
-───────────────────────────────────────── */
 .about-container {
   width: 100%;
   max-width: 1200px;
@@ -69,9 +60,6 @@
   padding: 72px 40px 100px;
 }
 
-/* ─────────────────────────────────────────
-   BADGE (shared)
-───────────────────────────────────────── */
 .about-badge {
   display: inline-flex;
   align-items: center;
@@ -85,9 +73,6 @@
   margin-bottom: 20px;
 }
 
-/* ─────────────────────────────────────────
-   SECTION TITLES
-───────────────────────────────────────── */
 .section-header {
   text-align: center;
   margin-bottom: 48px;
@@ -108,9 +93,6 @@
   color: #555;
 }
 
-/* ─────────────────────────────────────────
-   GRIDS
-───────────────────────────────────────── */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -125,9 +107,6 @@
   margin-bottom: 88px;
 }
 
-/* ─────────────────────────────────────────
-   CARD
-───────────────────────────────────────── */
 .member-card {
   background: #ffffff;
   border: 1px solid #e5e7eb;
@@ -143,9 +122,6 @@
   box-shadow: 0 8px 24px rgba(204, 0, 0, 0.08);
 }
 
-/* ─────────────────────────────────────────
-   CARD CONTENT
-───────────────────────────────────────── */
 .member-image {
   width: 96px;
   height: 96px;
@@ -192,9 +168,6 @@
   color: #991b1b;
 }
 
-/* ─────────────────────────────────────────
-   MODAL BACKDROP
-───────────────────────────────────────── */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -207,9 +180,6 @@
   animation: fadeIn 0.2s ease;
 }
 
-/* ─────────────────────────────────────────
-   MODAL
-───────────────────────────────────────── */
 .modal-content {
   width: 100%;
   max-width: 820px;
@@ -279,9 +249,6 @@
   margin-bottom: 28px;
 }
 
-/* ─────────────────────────────────────────
-   MODAL BUTTONS
-───────────────────────────────────────── */
 .modal-button-group {
   display: flex;
   gap: 12px;
@@ -322,9 +289,6 @@
   transform: scale(0.98);
 }
 
-/* ─────────────────────────────────────────
-   ANIMATIONS
-───────────────────────────────────────── */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -335,9 +299,6 @@
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* ─────────────────────────────────────────
-   RESPONSIVE
-───────────────────────────────────────── */
 @media (max-width: 860px) {
   .modal-layout {
     flex-direction: column;
@@ -373,9 +334,6 @@
   }
 }
 
-/* ─────────────────────────────────────────
-   ABOUT PAGE FOOTER (logos only)
-───────────────────────────────────────── */
 .about-footer {
   width: 100%;
   border-top: 1px solid #e5e5e5;

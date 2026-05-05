@@ -26,7 +26,7 @@ const teamMembers = [
     image: userImage,
     github: 'https://github.com/AJPerez24',
     description:
-      'I am a Computer Science student at the TTU Whitacre College of Engineering with a minors in Mathematics and Business. My general skills fall under front-end development, data analytics, and machine learning with robotics and AI systems. Proficient in JavaScript, CSS, C, Python, and SQL',
+      'I am a Computer Science student at the TTU Whitacre College of Engineering with a minors in Mathematics and Business. My general skills fall under front-end development, data analytics, and machine learning with robotics and AI systems. Proficient in JavaScript, CSS, C, Python, and SQL.',
   },
   {
     name: 'Gerardo Jimenez',
@@ -90,10 +90,8 @@ export default function AboutUs() {
   return (
     <div className="about-page">
 
-      {/* ── Navbar ── */}
       <Navbar isLoggedIn={!!token} />
 
-      {/* ── Backdrop hero ── */}
       <div className="about-backdrop" style={{ backgroundImage: `url(${backdrop})` }}>
         <div className="about-backdrop-overlay">
           <span className="about-badge">Our Team</span>

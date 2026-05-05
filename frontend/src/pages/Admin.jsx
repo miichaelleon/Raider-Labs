@@ -1,22 +1,9 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { getAllUsers, getUserProgress, deleteUser } from '../services/api';
+import { getAllUsers, getUserProgress, deleteUser, getLessons } from '../services/api';
 import Navbar from '../components/Navbar';
 import './Admin.css';
-
-// ── Lesson definitions (mirrors Dashboard) ────────────────────────────
-const ALL_LESSONS = [
-  { id: '0.1', title: 'Money',                          zone: 'Basics'  },
-  { id: '0.2', title: 'Income',                         zone: 'Basics'  },
-  { id: '0.3', title: 'Taxes',                          zone: 'Basics'  },
-  { id: '1.1', title: 'Needs vs. Wants',                zone: 'Zone A'  },
-  { id: '1.2', title: '4 Step Budgeting',               zone: 'Zone A'  },
-  { id: '1.3', title: 'Transaction Register',           zone: 'Zone A'  },
-  { id: '2.1', title: 'Endorsing & Depositing Checks',  zone: 'Zone B'  },
-  { id: '2.2', title: 'Online Banking & Balances',      zone: 'Zone B'  },
-];
-const TOTAL_LESSONS = ALL_LESSONS.length;
 
 // ── Stage derivation ───────────────────────────────────────────────────
 function getStage(entry) {
@@ -51,11 +38,11 @@ function ProgressBar({ value, max, color }) {
 }
 
 // ── Analytics module ───────────────────────────────────────────────────
-function AnalyticsModule({ users, allProgress, focusUser, loadingProgress }) {
+function AnalyticsModule({ users, allProgress, focusUser, loadingProgress, allLessons }) {
+  const totalLessons = allLessons.length;
 
-  // Build per-lesson stage distribution across all students (or just focusUser)
   const chartData = useMemo(() => {
-    return ALL_LESSONS.map(lesson => {
+    return allLessons.map(lesson => {
       const stageCounts = { 'not-started': 0, show: 0, practice: 0, assess: 0, completed: 0 };
 
       const targets = focusUser ? [focusUser] : users.filter(u => u.role === 'student');
@@ -69,9 +56,8 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress }) {
 
       return { ...lesson, stageCounts, total: targets.length };
     });
-  }, [users, allProgress, focusUser]);
+  }, [users, allProgress, focusUser, allLessons]);
 
-  // Overall completion stats
   const summaryStats = useMemo(() => {
     const targets = focusUser ? [focusUser] : users.filter(u => u.role === 'student');
     if (targets.length === 0) return { completionRate: 0, avgLessons: 0, fullyComplete: 0 };
@@ -83,15 +69,15 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress }) {
       const userProgress = allProgress[u.id] || [];
       const completedCount = userProgress.filter(p => p.completed).length;
       totalCompleted += completedCount;
-      if (completedCount === TOTAL_LESSONS) fullyComplete++;
+      if (completedCount === totalLessons) fullyComplete++;
     });
 
     return {
-      completionRate: Math.round((totalCompleted / (targets.length * TOTAL_LESSONS)) * 100),
+      completionRate: Math.round((totalCompleted / (targets.length * totalLessons)) * 100),
       avgLessons:     (totalCompleted / targets.length).toFixed(1),
       fullyComplete,
     };
-  }, [users, allProgress, focusUser]);
+  }, [users, allProgress, focusUser, allLessons]);
 
   const maxStudents = focusUser
     ? 1
@@ -165,7 +151,7 @@ function AnalyticsModule({ users, allProgress, focusUser, loadingProgress }) {
 
             {/* Lesson label */}
             <div className="chart-row-label">
-              <span className="chart-zone-badge">{lesson.zone}</span>
+              <span className="chart-zone-badge">{lesson.zone?.label ?? lesson.zone}</span>
               <span className="chart-lesson-name">{lesson.title}</span>
             </div>
 
@@ -337,22 +323,28 @@ export default function Admin() {
   const navigate = useNavigate();
 
   const [users,           setUsers]           = useState([]);
+  const [allLessons,      setAllLessons]      = useState([]);
   const [allProgress,     setAllProgress]     = useState({});
   const [loading,         setLoading]         = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(true);
   const [search,          setSearch]          = useState('');
   const [deleteTarget,    setDeleteTarget]    = useState(null);
 
-  // ── Load all users ──
+  // ── Load all users and lessons in parallel ──
   useEffect(() => {
     if (user?.role !== 'admin') { navigate('/dashboard'); return; }
     async function load() {
       try {
-        const data = await getAllUsers(token);
-        setUsers(Array.isArray(data) ? data : []);
+        const [userData, lessonData] = await Promise.all([
+          getAllUsers(token),
+          getLessons(token),
+        ]);
+        setUsers(Array.isArray(userData) ? userData : []);
+        setAllLessons(Array.isArray(lessonData) ? lessonData : []);
       } catch (err) {
         console.error(err);
         setUsers([]);
+        setAllLessons([]);
       } finally {
         setLoading(false);
       }
@@ -438,6 +430,7 @@ export default function Admin() {
             allProgress={allProgress}
             focusUser={focusUser}
             loadingProgress={loadingProgress}
+            allLessons={allLessons}
           />
         )}
 
